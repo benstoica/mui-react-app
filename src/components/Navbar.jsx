@@ -10,9 +10,11 @@ import {
 import { Mail } from "@mui/icons-material";
 import CodeIcon from "@mui/icons-material/Code";
 
-import React from "react";
+import React, { useState } from "react";
 import { Notifications } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
+import { Menu } from "@mui/material";
+import { MenuItem } from "@mui/material";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -45,6 +47,8 @@ const UserBox = styled(Box)(({ theme }) => ({
 }));
 
 const Navbar = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <AppBar position='sticky'>
       <StyledToolbar>
@@ -65,16 +69,35 @@ const Navbar = () => {
           <Avatar
             sx={{ width: 30, height: 30 }}
             src='https://avatars.githubusercontent.com/u/13625714?s=40&v=4'
+            onClick={(e) => setOpen(true)}
           />
         </Icons>
         <UserBox>
           <Avatar
             sx={{ width: 30, height: 30 }}
             src='https://avatars.githubusercontent.com/u/13625714?s=40&v=4'
+            onClick={(e) => setOpen(true)}
           />
           <Typography variant='span'>Ben</Typography>
         </UserBox>
       </StyledToolbar>
+      <Menu
+        id='demo-positioned-menu'
+        aria-labelledby='demo-positioned-button'
+        open={open}
+        onClose={(e) => setOpen(false)}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}>
+        <MenuItem>Profile</MenuItem>
+        <MenuItem>My account</MenuItem>
+        <MenuItem>Logout</MenuItem>
+      </Menu>
     </AppBar>
   );
 };
